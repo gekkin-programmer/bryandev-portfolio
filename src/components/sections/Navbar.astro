@@ -1,15 +1,14 @@
 ---
 import type { Lang } from '../../i18n/config';
 import type { Dict } from '../../i18n/utils';
-import { localizedUrl } from '../../i18n/utils';
 
 interface Props { lang: Lang; t: Dict; currentPath: string; }
 const { lang, t } = Astro.props;
 
 const leftLinks = [
   { href: '#home', label: t.nav.home, active: true },
-  { href: '#about', label: t.nav.about, active: false },
-  { href: '#skills', label: t.nav.skills, active: false },
+  { href: '#why', label: t.nav.about, active: false },
+  { href: '#experience', label: t.nav.skills, active: false },
 ];
 const rightLinks = [
   { href: '#projects', label: t.nav.projects, active: false },
@@ -24,7 +23,7 @@ const rightLinks = [
         <a href={l.href} class:list={['navbar__link', { 'navbar__link--active': l.active }]} aria-current={l.active ? 'page' : undefined}>{l.label}</a>
       ))}
     </div>
-    <a class="navbar__brand" href={localizedUrl(lang, '/')} aria-label="BRYANDEV — home">
+    <a class="navbar__brand" href="/" aria-label="BRYANDEV — home">
       <span class="navbar__badge" aria-hidden="true">B</span>
       <span class="navbar__wordmark">BRYANDEV</span>
     </a>

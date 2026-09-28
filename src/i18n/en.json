@@ -1,6 +1,6 @@
 {
   "meta": {
-    "title": "Bryan — Software Engineer Portfolio",
+    "title": "Bryan, Software Engineer",
     "description": "Portfolio of Bryan, Software Engineer: projects, skills and contact.",
     "locale": "en_US"
   },
@@ -23,6 +23,18 @@
     "yearsLabel": "Experience",
     "portfolio": "Portfolio",
     "hireMe": "Hire me"
+  },
+  "skills": {
+    "titlePrefix": "my ",
+    "titleAccent": "Skills",
+    "items": [
+      { "name": "Java / Spring Boot" },
+      { "name": "TypeScript / React" },
+      { "name": "HTML / CSS / Tailwind" },
+      { "name": "REST APIs" },
+      { "name": "Figma" },
+      { "name": "Git / GitHub" }
+    ]
   },
   "projects": {
     "titlePrefix": "my ",

@@ -1,6 +1,6 @@
 {
   "meta": {
-    "title": "Bryan — Portfolio Ingénieur Logiciel",
+    "title": "Bryan, Ingénieur Logiciel",
     "description": "Portfolio de Bryan, Ingénieur Logiciel : projets, compétences et contact.",
     "locale": "fr_FR"
   },
@@ -23,6 +23,18 @@
     "yearsLabel": "Expérience",
     "portfolio": "Portfolio",
     "hireMe": "Me recruter"
+  },
+  "skills": {
+    "titlePrefix": "mes ",
+    "titleAccent": "Compétences",
+    "items": [
+      { "name": "Java / Spring Boot" },
+      { "name": "TypeScript / React" },
+      { "name": "HTML / CSS / Tailwind" },
+      { "name": "API REST" },
+      { "name": "Figma" },
+      { "name": "Git / GitHub" }
+    ]
   },
   "projects": {
     "titlePrefix": "mes ",
