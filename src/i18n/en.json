@@ -1,0 +1,130 @@
+{
+  "meta": {
+    "title": "Bryan — Software Engineer Portfolio",
+    "description": "Portfolio of Bryan, Software Engineer: projects, skills and contact.",
+    "locale": "en_US"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "skills": "Skills",
+    "projects": "Projects",
+    "experience": "Experience",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "Hello!",
+    "titlePrefix": "I'm ",
+    "titleName": "Bryan",
+    "titleComma": ",",
+    "titleRest": "Software Engineer",
+    "quote": "I care about UX experience way too much haha",
+    "yearsNumber": "3 Years",
+    "yearsLabel": "Experience",
+    "portfolio": "Portfolio",
+    "hireMe": "Hire me"
+  },
+  "projects": {
+    "titlePrefix": "my ",
+    "titleAccent": "Projects",
+    "description": "A selection of recent work spanning brand identity, UI design, and creative direction. Each project reflects a unique challenge and a tailored approach.",
+    "items": [
+      { "tag": "Frontend development", "name": "Djelica", "image": "/projects/djelica.png", "url": "https://djelica.com/" },
+      { "tag": "Fullstack development", "name": "Eazlypost", "image": "/projects/eazlypost.png", "url": "https://eazlypost.com/" },
+      { "tag": "UI/ UX Design", "name": "Bestcorp", "image": "/projects/bestcorp.png", "url": "https://www.bestcorpcmr.com/" }
+    ]
+  },
+  "experience": {
+    "title": "My Work Experience",
+    "jobs": [
+      {
+        "company": "HorebPay",
+        "dates": "nov 2024 - may 2025",
+        "role": "Junior Software Intern",
+        "desc": "My main role was reading legacy code, reporting bugs and helping initialize Spring projects"
+      },
+      {
+        "company": "Business Agency SAS",
+        "dates": "june 2025 - April 2026",
+        "role": "Frontend Developer",
+        "desc": "Turning Figma mockups into code and integrating APIs while meeting deadlines"
+      },
+      {
+        "company": "BestCorp",
+        "dates": "feb 2026 - Present",
+        "role": "Lead Frontend Designer",
+        "desc": "Establishing the design system, code architecture and guiding sprints"
+      }
+    ]
+  },
+  "whyme": {
+    "titlePrefix": "Why ",
+    "titleAccent": "Hire me?",
+    "desc": "I make sure the client is satisfied with the project and I offer free after-sales support",
+    "stats": [
+      { "value": "9+", "label": "Projects Completed" },
+      { "value": "15+", "label": "Clients satisfied" }
+    ],
+    "cta": "Hire me"
+  },
+  "testimonials": {
+    "titlePrefix": "Testimonials That Speak to My ",
+    "titleAccent": "Results",
+    "desc": "Real feedback from clients and teammates I've worked with — on design quality, delivery and collaboration.",
+    "items": [
+      {
+        "name": "Borel",
+        "role": "Lead Developer, Horeb Pay",
+        "image": "",
+        "quote": "Very good at design, I needed him on my team.",
+        "stars": "#FD853A",
+        "rating": 4
+      },
+      {
+        "name": "Christian Mbouyem Ngounou",
+        "role": "CEO, BestCorp",
+        "image": "/testimonials/christian.jpg",
+        "quote": "Pays attention to detail and never runs out of interesting ideas.",
+        "stars": "#8224E3",
+        "rating": 5
+      },
+      {
+        "name": "James",
+        "role": "Entrepreneur",
+        "image": "",
+        "quote": "I had a very complex project to complete but didn't know how to illustrate it; Bryan perfectly understood my concern.",
+        "stars": "#8224E3",
+        "rating": 5
+      }
+    ]
+  },
+  "contact": {
+    "titlePrefix": "Have an Awesome Project Idea? ",
+    "titleAccent": "Let's Discuss",
+    "emailPlaceholder": "Enter Email Address",
+    "submit": "Send"
+  },
+  "language": {
+    "label": "Language",
+    "switchTo": "Switch to French"
+  },
+  "footer": {
+    "title": "Lets Connect there",
+    "hireMe": "Hire me",
+    "navTitle": "Navigation",
+    "nav": [
+      { "label": "Home", "href": "#home" },
+      { "label": "About Us", "href": "#why" },
+      { "label": "Service", "href": "#projects" },
+      { "label": "Resume", "href": "#experience" },
+      { "label": "Project", "href": "#projects" }
+    ],
+    "contactTitle": "Contact",
+    "phone": "+237 640684417",
+    "email": "nkouambrayan@gmail.com",
+    "newsTitle": "Get the latest information",
+    "newsPlaceholder": "Email Address",
+    "newsSend": "Subscribe",
+    "rights": "Copyright© 2026 Pene Nkouam Bryan. All Rights Reserved."
+  }
+}

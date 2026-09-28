@@ -1,0 +1,52 @@
+---
+/**
+ * LanguageSwitcher — framework-free, < 1KB JS.
+ * - Reads current lang from URL prefix (/en, /fr)
+ * - On click: saves to localStorage + navigates to same page in target lang
+ */
+import { LANGUAGES, LANGUAGE_LABELS, type Lang } from '../i18n/config';
+import { swapLangInPath } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+  currentPath?: string;
+}
+const { lang, currentPath = '/' } = Astro.props;
+const target: Lang = lang === 'en' ? 'fr' : 'en';
+const targetHref = swapLangInPath(currentPath, target);
+---
+<div class="lang-switcher" data-lang-switcher>
+  <span class="lang-switcher__current" aria-hidden="true">{LANGUAGE_LABELS[lang]}</span>
+  <a
+    class="lang-switcher__link"
+    href={targetHref}
+    hreflang={target}
+    data-target-lang={target}
+    aria-label={lang === 'en' ? 'Switch to French' : 'Passer en anglais'}
+  >
+    {LANGUAGE_LABELS[target]}
+  </a>
+</div>
+
+<script is:inline>
+  (function () {
+    document.addEventListener('click', function (e) {
+      var el = e.target && e.target.closest ? e.target.closest('[data-target-lang]') : null;
+      if (!el) return;
+      var next = el.getAttribute('data-target-lang');
+      if (next !== 'en' && next !== 'fr') return;
+      try {
+        if (window.__setLangPreference) window.__setLangPreference(next);
+        else window.localStorage.setItem('portfolio-lang', next);
+      } catch (err) {}
+      // Let the <a href> do the navigation (SSG page, instant + SEO friendly).
+    });
+  })();
+</script>
+
+<style>
+  /* PASTE FIGMA CSS for language switcher here. Scoped to this component. */
+  .lang-switcher { display: inline-flex; align-items: center; gap: 0.5rem; }
+  .lang-switcher__current { font-weight: 700; opacity: 0.6; }
+  .lang-switcher__link { text-decoration: underline; text-underline-offset: 3px; }
+</style>

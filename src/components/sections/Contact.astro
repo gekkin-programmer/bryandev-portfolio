@@ -1,0 +1,142 @@
+---
+import type { Dict } from '../../i18n/utils';
+import type { Lang } from '../../i18n/config';
+
+interface Props { lang: Lang; t: Dict; }
+const { t } = Astro.props;
+---
+<section class="contact" id="contact" aria-labelledby="contact-title">
+  <h2 class="contact__title" id="contact-title">{t.contact.titlePrefix}<span class="contact__titleAccent">{t.contact.titleAccent}</span></h2>
+
+  {/* DETAILS LATER: form provider wiring (Formspree/Web3Forms) + final icons copy */}
+  <form class="contact__form" data-contact-form novalidate={false}>
+    <div class="contact__pill">
+      <label class="contact__field">
+        <span class="contact__sms" aria-hidden="true">
+          <svg width="27" height="23" viewBox="0 0 27 23" fill="none"><path d="M20 0H6.66667C2.66667 0 0 2 0 6.66667V16C0 20.6667 2.66667 22.6667 6.66667 22.6667H20C24 22.6667 26.6667 20.6667 26.6667 16V6.66667C26.6667 2 24 0 20 0ZM20.6267 8.12L16.4533 11.4533C15.5733 12.16 14.4533 12.5067 13.3333 12.5067C12.2133 12.5067 11.08 12.16 10.2133 11.4533L6.04 8.12C5.61333 7.77333 5.54667 7.13333 5.88 6.70667C6.22667 6.28 6.85333 6.2 7.28 6.54667L11.4533 9.88C12.4667 10.6933 14.1867 10.6933 15.2 9.88L19.3733 6.54667C19.8 6.2 20.44 6.26667 20.7733 6.70667C21.12 7.13333 21.0533 7.77333 20.6267 8.12Z" fill="#8224E3"/></svg>
+        </span>
+        <span class="contact__sr">Email</span>
+        <input
+          class="contact__input"
+          type="email"
+          name="email"
+          required
+          placeholder={t.contact.emailPlaceholder}
+          autocomplete="email"
+        />
+      </label>
+      {/* Figma button reads "Home" — assumed placeholder, using Send */}
+      <button class="contact__btn" type="submit">{t.contact.submit}</button>
+    </div>
+  </form>
+</section>
+
+<style>
+  /* Figma Frame 324 Contact — layout pass (form wiring + details later). */
+  .contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.625rem; /* 10px */
+    padding: 6.125rem 1.5rem; /* 98px */
+  }
+  .contact__title {
+    margin: 0;
+    max-width: 49.9375rem; /* 799px */
+    font-family: var(--font-bungee);
+    font-size: 4rem; /* 64px */
+    line-height: 1.2; /* 77px */
+    text-align: center;
+    letter-spacing: -0.015em;
+    color: var(--color-slate);
+  }
+  .contact__titleAccent { color: var(--color-primary); }
+  /* Figma Frame 12 — form block 832px */
+  .contact__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.625rem; /* 10px */
+    width: min(100%, 52rem); /* 832px */
+  }
+  /* Figma Frame 1 — email pill 832x86, border gray/200, radius 50 */
+  .contact__pill {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.625rem; /* 10px */
+    width: 100%;
+    min-height: 5.375rem; /* 86px */
+    padding: 0.875rem; /* 14px */
+    box-sizing: border-box;
+    border: 1px solid #e4e7ec; /* Gray/200 */
+    border-radius: 50px;
+    backdrop-filter: blur(7.5px);
+    -webkit-backdrop-filter: blur(7.5px);
+    background: #fff;
+  }
+  .contact__field {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    flex: 1;
+    min-width: 0;
+  }
+  /* Figma Frame 325 — sms chip 64x58, purple 28% */
+  .contact__sms {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 4rem; /* 64px */
+    height: 3.625rem; /* 58px */
+    border-radius: 50px;
+    background: rgba(130, 36, 227, 0.28);
+  }
+  .contact__sr {
+    position: absolute;
+    width: 1px; height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+  .contact__input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: var(--font-urbanist);
+    font-weight: 500;
+    font-size: 1.25rem; /* 20px */
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    color: #000;
+  }
+  .contact__input::placeholder { color: #000; opacity: 1; }
+  /* Figma Frame 7 — submit 126x64, purple, radius 60 */
+  .contact__btn {
+    flex-shrink: 0;
+    min-width: 7.875rem; /* 126px */
+    min-height: 4rem; /* 64px */
+    padding: 1.25rem 2.5rem;
+    border: none;
+    border-radius: 60px;
+    background: var(--color-primary);
+    color: #fff;
+    font-family: var(--font-urbanist);
+    font-weight: 500;
+    font-size: 1.25rem;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    cursor: pointer;
+  }
+
+  @media (max-width: 80rem) {
+    .contact__title { font-size: 2.5rem; }
+    .contact__pill { flex-direction: column; border-radius: 32px; align-items: stretch; }
+    .contact__btn { width: 100%; }
+  }
+</style>

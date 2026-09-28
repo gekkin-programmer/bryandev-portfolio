@@ -1,0 +1,76 @@
+---
+/**
+ * BaseHead — all SEO / favicon / performance tags in one place.
+ * Usage: <BaseHead lang={lang} title={t.meta.title} description={t.meta.description} path="/en/" />
+ */
+import type { Lang } from '../i18n/config';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+  path: string; // current localized path, e.g. "/en/" — used for canonical + hreflang
+  image?: string; // absolute or root-relative OG image
+  noindex?: boolean;
+}
+const { lang, title, description, path, image = '/og-cover.jpg', noindex = false } = Astro.props;
+const site = (Astro.site?.toString() ?? 'https://example.com').replace(/\/$/, '');
+const canonical = new URL(path, site + '/').toString();
+const ogImage = image.startsWith('http') ? image : new URL(image, site + '/').toString();
+const locale = lang === 'fr' ? 'fr_FR' : 'en_US';
+const alternate = lang === 'en' ? 'fr_FR' : 'en_US';
+const otherPath = lang === 'en' ? path.replace(/^\/en/, '/fr') : path.replace(/^\/fr/, '/en');
+const otherUrl = new URL(otherPath.startsWith('/') ? otherPath.slice(1) : otherPath, site + '/').toString();
+---
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title}</title>
+<meta name="description" content={description} />
+{noindex ? <meta name="robots" content="noindex, nofollow" /> : <meta name="robots" content="index, follow" />}
+<link rel="canonical" href={canonical} />
+<link rel="alternate" hreflang="en" href={new URL('en/', site + '/').toString()} />
+<link rel="alternate" hreflang="fr" href={new URL('fr/', site + '/').toString()} />
+<link rel="alternate" hreflang="x-default" href={new URL('en/', site + '/').toString()} />
+
+{/* Open Graph */}
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={title} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:locale" content={locale} />
+<meta property="og:locale:alternate" content={alternate} />
+
+{/* Twitter */}
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
+{/* Favicon set — replace files in /public with your Figma exports (same names) */}
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta name="theme-color" content="#0a0a0a" />
+
+{/* Performance: preconnect fonts, DNS-prefetch heavy origins only when needed */}
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+{/* Figma fonts: Bungee (pills/nav), Urbanist (headline — also Lufga fallback), Inter (logo) */}
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Bungee&family=Inter:wght@700&family=Urbanist:wght@500;600;700&display=swap"
+/>
+
+{/* Structured data */}
+<script type="application/ld+json" set:html={JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: title,
+  description,
+  url: canonical,
+  inLanguage: [locale],
+})} />

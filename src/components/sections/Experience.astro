@@ -1,0 +1,168 @@
+---
+import type { Dict } from '../../i18n/utils';
+import type { Lang } from '../../i18n/config';
+
+interface Props { lang: Lang; t: Dict; }
+const { t } = Astro.props;
+const jobs = t.experience.jobs;
+/* Node dot colors per Figma: purple, dark, purple */
+const dots = ['#8224e3', '#1d2939', '#8224e3'];
+---
+<section class="exp" id="experience" aria-labelledby="exp-title">
+  <div class="exp__head">
+    <h2 class="exp__title" id="exp-title">{t.experience.title}</h2>
+  </div>
+
+  <div class="exp__body">
+    <div class="exp__companies">
+      {jobs.map((job) => (
+        <div class="exp__co">
+          <p class="exp__coName">{job.company}</p>
+          <p class="exp__dates">{job.dates}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="exp__line" aria-hidden="true">
+      {dots.map((color) => (
+        <span class="exp__node"><span class="exp__dot" style={`background:${color}`}></span></span>
+      ))}
+    </div>
+
+    <div class="exp__roles">
+      {jobs.map((job) => (
+        <div class="exp__role">
+          <p class="exp__roleName">{job.role}</p>
+          {job.desc && <p class="exp__desc">{job.desc}</p>}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Figma Work Exp Section — layout pass (details later). */
+  .exp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 4.4375rem; /* 0 71px */
+  }
+  /* Figma Frame 73 — title band, padding 85px 0 */
+  .exp__head {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+    padding: 5.3125rem 0; /* 85px */
+  }
+  .exp__title {
+    margin: 0;
+    font-family: var(--font-bungee);
+    font-size: 4rem; /* 64px */
+    line-height: 1;
+    letter-spacing: -0.015em;
+    color: var(--color-slate);
+    text-align: center;
+  }
+  /* Figma Frame 11 — body row 1298px, space-between */
+  .exp__body {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    width: min(100%, 81.125rem); /* 1298px */
+  }
+  /* Left column — companies, gap 102px */
+  .exp__companies {
+    display: flex;
+    flex-direction: column;
+    gap: 6.375rem; /* 102px */
+    width: min(100%, 29.5625rem); /* 473px */
+  }
+  .exp__co { display: flex; flex-direction: column; gap: 0.875rem; } /* 14px */
+  .exp__coName {
+    margin: 0;
+    font-family: var(--font-bungee);
+    font-size: 2.5rem; /* 40px */
+    line-height: 1;
+    letter-spacing: -0.015em;
+    color: var(--color-slate);
+  }
+  .exp__dates {
+    margin: 0;
+    font-family: var(--font-bungee);
+    font-size: 1.5rem; /* 24px */
+    line-height: 1;
+    letter-spacing: -0.015em;
+    color: #98a2b3; /* Gray/400 */
+  }
+  /* Middle — dashed vertical line + 3 nodes */
+  .exp__line {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+    min-height: 25rem; /* 400px */
+    width: 3rem; /* 48px */
+    flex-shrink: 0;
+  }
+  .exp__line::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 1.5rem;
+    bottom: 1.5rem;
+    border-left: 3px dashed var(--color-slate);
+  }
+  .exp__node {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem; /* 48px */
+    height: 3rem;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px dashed #1d2939;
+  }
+  .exp__dot { width: 2.25rem; height: 2.25rem; border-radius: 50%; } /* 36px */
+  /* Right column — roles, gap 48px */
+  .exp__roles {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem; /* 48px */
+    width: min(100%, 35.5rem); /* 568px */
+  }
+  .exp__role { display: flex; flex-direction: column; gap: 0.875rem; } /* 14px */
+  .exp__roleName {
+    margin: 0;
+    font-family: var(--font-bungee);
+    font-size: 2.5rem; /* 40px */
+    line-height: 1;
+    letter-spacing: -0.015em;
+    color: var(--color-slate);
+  }
+  .exp__desc {
+    margin: 0;
+    max-width: 27.75rem; /* 444px */
+    font-family: var(--font-bungee);
+    font-size: 1.25rem; /* 20px */
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    color: #98a2b3;
+  }
+
+  @media (max-width: 80rem) {
+    .exp { padding: 0 1.5rem; }
+    .exp__head { padding: 3.5rem 0; }
+    .exp__title { font-size: 2.5rem; }
+    .exp__body { flex-direction: column; }
+    .exp__line { display: none; }
+    .exp__coName, .exp__roleName { font-size: 1.75rem; }
+    .exp__companies { gap: 2.5rem; }
+  }
+</style>

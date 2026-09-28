@@ -1,0 +1,158 @@
+---
+import type { Dict } from '../../i18n/utils';
+import type { Lang } from '../../i18n/config';
+
+interface Props { lang: Lang; t: Dict; }
+const { t } = Astro.props;
+---
+<section class="why" id="why" aria-labelledby="why-title">
+  <div class="why__row">
+    <div class="why__media">
+      <span class="why__bg" aria-hidden="true"></span>
+      <img class="why__photo" src="/bryan2.png" alt={t.whyme.titlePrefix + t.whyme.titleAccent} width="445" height="445" loading="lazy" decoding="async" />
+    </div>
+
+    <div class="why__content">
+      <h2 class="why__title" id="why-title">{t.whyme.titlePrefix}<span class="why__titleAccent">{t.whyme.titleAccent}</span></h2>
+      <p class="why__desc">{t.whyme.desc}</p>
+
+      <div class="why__stats">
+        {t.whyme.stats.map((s) => (
+          <div class="why__stat">
+            <p class="why__value">{s.value}</p>
+            <p class="why__label">{s.label}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* Figma button reads "Shop Tropical Plants" — assumed placeholder, using Hire me CTA */}
+      <a class="why__cta" href="#contact">{t.whyme.cta}</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Figma Why me — layout pass (details later). */
+  .why {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 7.625rem 4.4375rem; /* 122px 71px */
+    background: #fff;
+    border-radius: 50px;
+  }
+  /* Figma Frame 4 — row 1299px, gap 150px, align center */
+  .why__row {
+    display: flex;
+    align-items: center;
+    gap: 9.375rem; /* 150px */
+    width: min(100%, 81.1875rem); /* 1299px */
+  }
+  /* Figma Group 12 — 445px portrait on purple rounded card */
+  .why__media {
+    position: relative;
+    flex-shrink: 0;
+    width: min(100%, 27.8125rem); /* 445px */
+    aspect-ratio: 445 / 534;
+  }
+  /* Figma Rectangle 11 — purple card 445x468 at top 66/534, behind image */
+  .why__bg {
+    position: absolute;
+    top: 12.36%; /* 66px */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-radius: 80px;
+    background: var(--color-primary);
+  }
+  /* Figma portrait — 445x445 at top 89/534, bottoms flush with card */
+  .why__photo {
+    position: absolute;
+    top: 16.67%; /* 89px */
+    left: 0;
+    width: 100%;
+    height: 83.33%; /* 445/534 */
+    object-fit: cover;
+    border-radius: 80px;
+  }
+  /* Figma Frame 74 — content 704px, gap 47px */
+  .why__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2.9375rem; /* 47px */
+    max-width: 44rem; /* 704px */
+    flex: 1;
+  }
+  .why__title {
+    margin: 0;
+    font-family: var(--font-bungee);
+    font-size: 4rem; /* 64px */
+    line-height: 1;
+    letter-spacing: -0.015em;
+    color: var(--color-slate);
+  }
+  .why__titleAccent { color: var(--color-primary); }
+  .why__desc {
+    margin: 0;
+    max-width: 27.75rem; /* 444px */
+    font-family: var(--font-bungee);
+    font-size: 1.25rem; /* 20px */
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    color: #98a2b3;
+  }
+  /* Stats row — 2 cols, gap 10px */
+  .why__stats {
+    display: flex;
+    gap: 0.625rem; /* 10px */
+    align-self: stretch;
+  }
+  .why__stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem; /* 10px */
+    flex: 1;
+  }
+  .why__value {
+    margin: 0;
+    font-family: var(--font-bungee);
+    font-size: 2.25rem; /* 36px */
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    color: #1d2939;
+  }
+  .why__label {
+    margin: 0;
+    font-family: var(--font-bungee);
+    font-size: 1.25rem; /* 20px */
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    color: #667085; /* Gray/500 */
+  }
+  /* Figma Frame 6 — outline CTA 259x104, radius 32 */
+  .why__cta {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2.0625rem 3.6875rem; /* 33px 59px */
+    border: 1px solid #151515;
+    border-radius: 32px;
+    font-family: var(--font-bungee);
+    font-size: 2rem; /* 32px */
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    color: #151515;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .why__cta:hover { background: #151515; color: #fff; }
+
+  @media (max-width: 80rem) {
+    .why { padding: 4rem 1.5rem; border-radius: 32px; }
+    .why__row { flex-direction: column; gap: 3rem; }
+    .why__title { font-size: 2.5rem; }
+    .why__cta { font-size: 1.25rem; padding: 1.25rem 2rem; }
+  }
+</style>

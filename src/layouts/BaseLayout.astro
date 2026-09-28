@@ -1,0 +1,37 @@
+---
+import '../styles/tokens.css';
+import '../styles/global.css';
+import LangScript from '../components/LangScript.astro';
+import BaseHead from '../components/BaseHead.astro';
+import AgentationToolbar from '../components/AgentationToolbar.tsx';
+import type { Lang } from '../i18n/config';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+  path: string;
+}
+const { lang, title, description, path } = Astro.props;
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <LangScript />
+    <BaseHead lang={lang} title={title} description={description} path={path} />
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <slot />
+    <AgentationToolbar client:only="react" />
+  </body>
+</html>
+
+<style>
+  .skip-link {
+    position: absolute; left: -9999px; top: 0;
+    background: #fff; color: #000; padding: 0.5rem 1rem; z-index: 100;
+  }
+  .skip-link:focus { left: 0; }
+</style>
