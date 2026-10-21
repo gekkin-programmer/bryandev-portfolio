@@ -1,8 +1,8 @@
 {
-  "name": "Portfolio",
-  "short_name": "Portfolio",
+  "name": "Bryan — Software Engineer",
+  "short_name": "Bryan",
   "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }],
-  "theme_color": "#0a0a0a",
+  "theme_color": "#8224e3",
   "background_color": "#ffffff",
   "display": "standalone"
 }
